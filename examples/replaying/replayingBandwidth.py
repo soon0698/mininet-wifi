@@ -2,12 +2,12 @@
 
 "Replaying Bandwidth"
 
-from mininet.node import Controller,OVSKernelSwitch
-from mininet.link import TCLink
-from mininet.log import setLogLevel, info
-from mininet.wifi.replaying import replayingBandwidth
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
+from mininet-original.node import Controller,OVSKernelSwitch
+from mininet-original.link import TCLink
+from mininet-original.log import setLogLevel, info
+from mininet-wifi.wifi.replaying import replayingBandwidth
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.net import Mininet_wifi
 
 
 def topology():

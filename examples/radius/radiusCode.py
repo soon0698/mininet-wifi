@@ -2,13 +2,13 @@
 
 'This example shows how to work with Radius Server'
 
-from mininet.node import Controller
-from mininet.log import setLogLevel, info
-from mininet.wifi.node import UserAP
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.link import wmediumd
-from mininet.wifi.wmediumdConnector import interference
+from mininet-original.node import Controller
+from mininet-original.log import setLogLevel, info
+from mininet-wifi.wifi.node import UserAP
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-wifi.wifi.link import wmediumd
+from mininet-wifi.wifi.wmediumdConnector import interference
 
 
 def topology():

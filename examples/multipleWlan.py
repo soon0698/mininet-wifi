@@ -3,11 +3,11 @@
 'This example shows how to create multiple interfaces in stations'
 
 from __future__ import print_function
-from mininet.node import OVSKernelSwitch, Controller
-from mininet.log import setLogLevel, info
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.link import adhoc
+from mininet-original.node import OVSKernelSwitch, Controller
+from mininet-original.log import setLogLevel, info
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-wifi.wifi.link import adhoc
 
 
 def topology():

@@ -8,7 +8,7 @@ from os.path import join
 # Get version number from source tree
 import sys
 sys.path.append( '.' )
-from mininet.net import VERSION
+from mininet-original.net import VERSION
 
 scripts = [ join( 'bin', filename ) for filename in [ 'mn' ] ]
 
@@ -20,10 +20,10 @@ setup(
     description='Process-based OpenFlow emulator',
     author='Bob Lantz; Ramon Fontes',
     author_email='rlantz@cs.stanford.edu; ramonrf@dca.fee.unicamp.br',
-    packages=[ 'mininet', 'mininet.wifi', 'mininet.sixLoWPAN', 'mininet.data', 'mininet.examples', 'mininet.sumo', 'mininet.sumo.sumolib',
-               'mininet.sumo.traci', 'mininet.sumo.data', 'mininet.sumo.sumolib.net', 'mininet.sumo.sumolib.output',
-               'mininet.sumo.sumolib.shapes', 'mininet.utils' ],
-    package_data={'mininet.sumo.data': ['*.xml', '*.sumocfg'], 'mininet.data': ['signal_table_ieee80211ax']},
+    packages=[ 'mininet-original', 'mininet-wifi.wifi', 'mininet-wifi.sixLoWPAN', 'mininet-wifi.data', 'mininet-wifi.examples', 'mininet-wifi.sumo', 'mininet-wifi.sumo.sumolib',
+               'mininet-wifi.sumo.traci', 'mininet-wifi.sumo.data', 'mininet-wifi.sumo.sumolib.net', 'mininet-wifi.sumo.sumolib.output',
+               'mininet-wifi.sumo.sumolib.shapes', 'mininet-wifi.utils' ],
+    package_data={'mininet-wifi.sumo.data': ['*.xml', '*.sumocfg'], 'mininet-wifi.data': ['signal_table_ieee80211ax']},
     long_description="""
         Mininet-WiFi is a network emulator which uses lightweight
         virtualization to create virtual networks for rapid

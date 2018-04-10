@@ -5,12 +5,12 @@
 import os
 import random
 
-from mininet.node import Controller, OVSKernelSwitch
-from mininet.log import setLogLevel, info
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.link import wmediumd
-from mininet.wifi.wmediumdConnector import interference
+from mininet-original.node import Controller, OVSKernelSwitch
+from mininet-original.log import setLogLevel, info
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-wifi.wifi.link import wmediumd
+from mininet-wifi.wifi.wmediumdConnector import interference
 
 
 def topology():

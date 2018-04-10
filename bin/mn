@@ -22,41 +22,41 @@ from sys import version_info as py_version_info
 if 'PYTHONPATH' in os.environ:
     sys.path = os.environ[ 'PYTHONPATH' ].split(':') + sys.path
 
-from mininet.clean import cleanup
-from mininet.wifi.clean import cleanup_wifi
+from mininet-original.clean import cleanup
+from mininet-wifi.wifi.clean import cleanup_wifi
 import mininet.wifi.cli
-from mininet.log import lg, LEVELS, info, debug, warn, error, output
-from mininet.net import VERSION
-from mininet.wifi.net import MininetWithControlNet
-from mininet.wifi.net import Mininet_wifi
-from mininet.node import (Host, CPULimitedHost, Controller, OVSController,
+from mininet-original.log import lg, LEVELS, info, debug, warn, error, output
+from mininet-original.net import VERSION
+from mininet-wifi.wifi.net import MininetWithControlNet
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-original.node import (Host, CPULimitedHost, Controller, OVSController,
                           Ryu, NOX, RemoteController, findController,
                           DefaultController, NullController,
                           UserSwitch, OVSSwitch, OVSBridge, IVSSwitch)
-from mininet.nodelib import LinuxBridge
-from mininet.link import Link, TCLink, TCULink, OVSLink
+from mininet-original.nodelib import LinuxBridge
+from mininet-original.link import Link, TCLink, TCULink, OVSLink
 
-from mininet.topo import (SingleSwitchTopo, LinearTopo,
+from mininet-original.topo import (SingleSwitchTopo, LinearTopo,
                           SingleSwitchReversedTopo,
                           MinimalTopo)
-from mininet.topolib import TreeTopo, TorusTopo
-from mininet.util import customClass, specialClass, splitArgs
-from mininet.util import buildTopo
+from mininet-original.topolib import TreeTopo, TorusTopo
+from mininet-original.util import customClass, specialClass, splitArgs
+from mininet-original.util import buildTopo
 
-from mininet.wifi.topo import (SingleAPTopo, LinearWirelessTopo,
+from mininet-wifi.wifi.topo import (SingleAPTopo, LinearWirelessTopo,
                                MinimalWirelessTopo)
-from mininet.wifi.link import TCWirelessLink, wmediumd
-from mininet.wifi.node import UserAP, OVSAP
+from mininet-wifi.wifi.link import TCWirelessLink, wmediumd
+from mininet-wifi.wifi.node import UserAP, OVSAP
 
 
 from functools import partial
 
 # Experimental! cluster edition prototype
-from mininet.examples.cluster import (MininetCluster, RemoteHost,
+from mininet-original.examples.cluster import (MininetCluster, RemoteHost,
                                       RemoteOVSSwitch, RemoteOVSAP, RemoteLink,
                                       SwitchBinPlacer, RandomPlacer,
                                       ClusterCleanup)
-from mininet.examples.clustercli import ClusterCLI
+from mininet-original.examples.clustercli import ClusterCLI
 
 PLACEMENT = { 'block': SwitchBinPlacer, 'random': RandomPlacer }
 

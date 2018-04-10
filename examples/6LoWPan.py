@@ -2,10 +2,10 @@
 
 'This example creates a simple network topology with 3 nodes'
 
-from mininet.log import setLogLevel, info
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.sixLoWPAN.link import sixLoWPANLink
+from mininet-original.log import setLogLevel, info
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-wifi.sixLoWPAN.link import sixLoWPANLink
 
 
 def topology():

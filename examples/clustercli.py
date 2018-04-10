@@ -3,7 +3,7 @@
 "CLI for Mininet Cluster Edition prototype demo"
 
 from mininet.cli import CLI
-from mininet.log import output, error
+from mininet-original.log import output, error
 
 # pylint: disable=global-statement
 nx, graphviz_layout, plt = None, None, None  # Will be imported on demand

@@ -2,11 +2,11 @@
 
 "Replaying Network Conditions"
 
-from mininet.log import setLogLevel
-from mininet.node import Controller
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.replaying import replayingNetworkConditions
+from mininet-original.log import setLogLevel
+from mininet-original.node import Controller
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.replaying import replayingNetworkConditions
 from sys import version_info as py_version_info
 
 

@@ -6,11 +6,11 @@ sta1 <---> sta2 <---> sta3"""
 
 import sys
 
-from mininet.log import setLogLevel, info
-from mininet.wifi.link import wmediumd, adhoc
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.wmediumdConnector import interference
+from mininet-original.log import setLogLevel, info
+from mininet-wifi.wifi.link import wmediumd, adhoc
+from mininet-wifi.wifi.cli import CLI_wifi
+from mininet-wifi.wifi.net import Mininet_wifi
+from mininet-wifi.wifi.wmediumdConnector import interference
 
 
 def topology(autoTxPower):
