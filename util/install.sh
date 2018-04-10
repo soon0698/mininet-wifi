@@ -154,6 +154,11 @@ function mn_deps {
 	    fi
     fi
     echo "Installing Mininet core"
+    git clone https://github.com/mininet/mininet mininet-base
+    pushd mininet-base
+    sudo make install
+    popd
+    echo "Installing Mininet-wifi core"
     pushd $MININET_DIR/mininet-wifi
     sudo make install
     popd
