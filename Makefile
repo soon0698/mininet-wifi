@@ -1,7 +1,7 @@
-MININET = mininet/*.py
-MININET_WIFI = mininet/wifi/*.py
-TEST = mininet/test/*.py
-EXAMPLES = mininet/examples/*.py
+MININET = mininet-original/*.py
+MININET_WIFI = mininet-wifi/wifi/*.py
+TEST = mininet-wifi/test/*.py
+EXAMPLES = mininet-wifi/examples/*.py
 MN = bin/mn
 PYMN = python -B bin/mn
 BIN = $(MN)
