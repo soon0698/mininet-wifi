@@ -22,7 +22,7 @@ setup(
     author_email='rlantz@cs.stanford.edu; ramonrf@dca.fee.unicamp.br',
     packages=[ 'mininet_original', 'mininet_wifi.wifi', 'mininet_wifi.sixLoWPAN', 'mininet_wifi.data', 'mininet_wifi.examples', 'mininet_wifi.sumo', 'mininet_wifi.sumo.sumolib',
                'mininet_wifi.sumo.traci', 'mininet_wifi.sumo.data', 'mininet_wifi.sumo.sumolib.net', 'mininet_wifi.sumo.sumolib.output',
-               'mininet_wifi.sumo.sumolib.shapes', 'mininet_wifi.utils' ],
+               'mininet_wifi.sumo.sumolib.shapes', 'mininet_original.utils' ],
     package_data={'mininet_wifi.sumo.data': ['*.xml', '*.sumocfg'], 'mininet_wifi.data': ['signal_table_ieee80211ax']},
     long_description="""
         Mininet-WiFi is a network emulator which uses lightweight
