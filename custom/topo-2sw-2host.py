@@ -8,7 +8,7 @@ Adding the 'topos' dict with a key/value pair to generate our newly defined
 topology enables one to pass in '--topo=mytopo' from the command line.
 """
 
-from mininet-original.topo import Topo
+from mininet_original.topo import Topo
 
 class MyTopo( Topo ):
     "Simple topology example."

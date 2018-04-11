@@ -11,11 +11,11 @@ sta1 ----- sta2"""
 
 import sys
 
-from mininet-original.log import setLogLevel, info
-from mininet-wifi.wifi.link import wmediumd, mesh
-from mininet-wifi.wifi.cli import CLI_wifi
-from mininet-wifi.wifi.net import Mininet_wifi
-from mininet-wifi.wifi.wmediumdConnector import interference
+from mininet_original.log import setLogLevel, info
+from mininet_wifi.wifi.link import wmediumd, mesh
+from mininet_wifi.wifi.cli import CLI_wifi
+from mininet_wifi.wifi.net import Mininet_wifi
+from mininet_wifi.wifi.wmediumdConnector import interference
 
 
 def topology(mobility):

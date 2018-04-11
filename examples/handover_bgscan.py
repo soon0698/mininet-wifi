@@ -10,13 +10,13 @@ mobility_domain='a1b2'
 e.g. ap1 = net.addAccessPoint('ap1', ..., ieee80211r='yes',
 mobility_domain='a1b2',...)"""
 
-from mininet-original.node import Controller
-from mininet-original.log import setLogLevel, info
-from mininet-wifi.wifi.node import UserAP
-from mininet-wifi.wifi.link import wmediumd
-from mininet-wifi.wifi.cli import CLI_wifi
-from mininet-wifi.wifi.net import Mininet_wifi
-from mininet-wifi.wifi.wmediumdConnector import interference
+from mininet_original.node import Controller
+from mininet_original.log import setLogLevel, info
+from mininet_wifi.wifi.node import UserAP
+from mininet_wifi.wifi.link import wmediumd
+from mininet_wifi.wifi.cli import CLI_wifi
+from mininet_wifi.wifi.net import Mininet_wifi
+from mininet_wifi.wifi.wmediumdConnector import interference
 
 
 def topology():

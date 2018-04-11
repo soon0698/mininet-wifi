@@ -83,16 +83,16 @@ from itertools import groupby
 from operator import attrgetter
 from distutils.version import StrictVersion
 
-from mininet-original.node import Node, Host, OVSSwitch, Controller
-from mininet-wifi.wifi.node import OVSAP
-from mininet-original.link import Link, Intf
-from mininet-original.net import Mininet
-from mininet-original.topo import LinearTopo
-from mininet-original.topolib import TreeTopo
-from mininet-original.util import quietRun, errRun
-from mininet-original.examples.clustercli import CLI
-from mininet-original.log import setLogLevel, debug, info, error
-from mininet-original.clean import addCleanupCallback
+from mininet_original.node import Node, Host, OVSSwitch, Controller
+from mininet_wifi.wifi.node import OVSAP
+from mininet_original.link import Link, Intf
+from mininet_original.net import Mininet
+from mininet_original.topo import LinearTopo
+from mininet_original.topolib import TreeTopo
+from mininet_original.util import quietRun, errRun
+from mininet_original.examples.clustercli import CLI
+from mininet_original.log import setLogLevel, debug, info, error
+from mininet_original.clean import addCleanupCallback
 
 
 def findUser():

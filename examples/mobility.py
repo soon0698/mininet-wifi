@@ -4,11 +4,11 @@
 
 import sys
 
-from mininet-original.node import Controller
-from mininet-original.log import setLogLevel, info
-from mininet-wifi.wifi.node import OVSKernelAP
-from mininet-wifi.wifi.cli import CLI_wifi
-from mininet-wifi.wifi.net import Mininet_wifi
+from mininet_original.node import Controller
+from mininet_original.log import setLogLevel, info
+from mininet_wifi.wifi.node import OVSKernelAP
+from mininet_wifi.wifi.cli import CLI_wifi
+from mininet_wifi.wifi.net import Mininet_wifi
 
 
 def topology(coord):
