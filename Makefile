@@ -36,15 +36,15 @@ errcheck: $(PYSRC)
 
 test: $(MININET) $(TEST)
 	-echo "Running tests"
-	mininet/test/test_nets.py
-	mininet/test/test_hifi.py
+	mininet-wifi/test/test_nets.py
+	mininet-wifi/test/test_hifi.py
 
 slowtest: $(MININET)
 	-echo "Running slower tests (walkthrough, examples)"
-	mininet/test/test_walkthrough.py -v
-	mininet/examples/test/runner.py -v
+	mininet-wifi/test/test_walkthrough.py -v
+	mininet-wifi/examples/test/runner.py -v
 
-mnexec: mnexec.c $(MN) mininet/net.py
+mnexec: mnexec.c $(MN) mininet-original/net.py
 	cc $(CFLAGS) $(LDFLAGS) -DVERSION=\"`PYTHONPATH=. $(PYMN) --version`\" $< -o $@
 
 install: $(MNEXEC) $(MANPAGES)
