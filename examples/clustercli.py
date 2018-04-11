@@ -2,7 +2,7 @@
 
 "CLI for Mininet Cluster Edition prototype demo"
 
-from mininet.cli import CLI
+from mininet_original.cli import CLI
 from mininet_original.log import output, error
 
 # pylint: disable=global-statement

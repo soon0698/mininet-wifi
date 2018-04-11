@@ -1,6 +1,6 @@
 import sys
 
-from mininet.cli import CLI
+from mininet_original.cli import CLI
 from mininet_original.log import output, error
 
 class CLI_wifi(CLI):

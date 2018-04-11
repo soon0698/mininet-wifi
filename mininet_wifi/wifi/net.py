@@ -14,7 +14,7 @@ from math import ceil
 from six import string_types
 from sys import version_info as py_version_info
 
-from mininet.cli import CLI
+from mininet_original.cli import CLI
 from mininet_original.term import cleanUpScreens, makeTerms
 from mininet_original.net import Mininet
 from mininet_original.node import (Node, Host, OVSKernelSwitch,

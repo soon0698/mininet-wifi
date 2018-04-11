@@ -95,7 +95,7 @@ from time import sleep
 from itertools import chain, groupby
 from math import ceil
 
-from mininet.cli import CLI
+from mininet_original.cli import CLI
 from mininet_original.log import info, error, debug, output, warn
 from mininet_original.node import (Node, Host, OVSKernelSwitch,
                           DefaultController, Controller)
