@@ -1,52 +1,106 @@
-![](https://github.com/ramonfontes/miscellaneous/blob/master/mininet-wifi/mininet-wifi-logo.png)
+# Introduction
 
-### About Mininet-WiFi
-Mininet-WiFi is a fork of Mininet (http://mininet.org/) which allows the using of both WiFi Stations and Access Points. Mininet-WiFi only add wifi features and you can work with it like you were working with Mininet.   
+This is a wireless medium simulation tool for Linux, based on the netlink API
+implemented in the `mac80211_hwsim` kernel driver.  Unlike the default in-kernel
+forwarding mode of `mac80211_hwsim`, wmediumd allows simulating frame loss and
+delay.
 
-[![Build Status](https://travis-ci.org/intrig-unicamp/mininet-wifi.svg?branch=master)](https://travis-ci.org/intrig-unicamp/mininet-wifi)
+This version is forked from an earlier version, hosted here:
 
-### Things to keep in mind when working with Mininet-WiFi   
-* You can use any wireless network tools (e.g. iw, iwconfig, wpa_supplicant, etc)    
-* Please consider computer network troubleshooting steps to solve issues before making questions in the mailing list (e.g. is the station associated with ap? Is the OpenFlow rule working correctly? etc)   
-* Do you need help? Be careful with questions in the mailing list and please providing as much information you can.
+    https://github.com/cozybit/wmediumd
 
-### User Manual  
-[Access the User Manual](https://github.com/ramonfontes/manual-mininet-wifi/raw/master/mininet-wifi-draft-manual.pdf)
+# Prerequisites
 
-### Mailing List  
-[https://groups.google.com/forum/#!forum/mininet-wifi-discuss](https://groups.google.com/forum/#!forum/mininet-wifi-discuss) 
+First, you need a recent Linux kernel with the `mac80211_hwsim` module
+available.  If you do not have this module, you may be able to build it using
+the [backports project](https://backports.wiki.kernel.org/index.php/Main_Page).
 
-### Use Cases Catalogue   
-Please, let us know if you are doing research with Mininet-WiFi. A list of citations on Mininet-WiFi is available [here](https://docs.google.com/spreadsheets/d/1laEhejMg6th-Urgc-_RqBi2H6m308Rnh9uJpKZavEio/edit?usp=sharing).     
+Wmediumd requires libnl3.0.
 
-## Installation  
-step 1: $ sudo apt-get install git  
-step 2: $ git clone https://github.com/intrig-unicamp/mininet-wifi  
-step 3: $ cd mininet-wifi  
-step 4: $ sudo util/install.sh -Wlnfv  
-#### install.sh options:   
--W: wireless dependencies   
--n: mininet-wifi dependencies    
--f: OpenFlow   
--v: OpenvSwitch   
--l: wmediumd   
-optional:  
--6: wpan tools  
--P: python3
+# Building
+```
+cd wmediumd && make
+```
 
-### Development
-For instructions about easier development check [this helper file](doc/dev_help.md).
+# Using Wmediumd
 
-## Pre-configured Virtual Machine    
-[Ubuntu 16.04 x64 :: Password: wifi](https://intrig.dca.fee.unicamp.br:8840/owncloud/index.php/s/PcxujWO5HsxxBIn)      
-user: wifi   
-pass: wifi   
-   
-## Note
-Mininet-WiFi should work fine in any Ubuntu distribution from 14.04, but in some cases (only if you have problems when start it) you have to stop NetworkManager with `stop network-manager` (you can also use `sudo systemctl stop network-manager` or `sudo service network-manager stop`).    
+Starting wmediumd with an appropriate config file is enough to make frames
+pass through wmediumd:
+```
+sudo modprobe mac80211_hwsim radios=2
+sudo ./wmediumd/wmediumd -c tests/2node.cfg &
+# run some hwsim test
+```
+However, please see the next section on some potential pitfalls.
 
-### Team
-Ramon dos Reis Fontes (ramonrf@dca.fee.unicamp.br)  
-Christian Rodolfo Esteve Rothenberg (chesteve@dca.fee.unicamp.br)  
+A complete example using network namespaces is given at the end of
+this document.
 
-We are members of [INTRIG (Information & Networking Technologies Research & Innovation Group)](http://intrig.dca.fee.unicamp.br) at University of Campinas - Unicamp, SP, Brazil.
+## Gotchas
+
+### Allowable MAC addresses
+
+The kernel only allows wmediumd to work on the second available hardware
+address, which has bit 6 set in the most significant octet
+(i.e. 42:00:00:xx:xx:xx, not 02:00:00:xx:xx:xx).  Set this appropriately
+using 'ip link set address'.
+
+This issue was fixed in commit cd37a90b2a417e5882414e19954eeed174aa4d29
+in Linux, released in kernel 4.1.0.
+
+### Rates
+
+wmediumd's rate table is currently hardcoded to 802.11a OFDM rates.
+Therefore, either operate wmediumd networks in 5 GHz channels, or supply
+a rateset for the BSS with no CCK rates.
+
+### Send-to-self
+
+By default, traffic between local devices in Linux will not go over
+the wire / wireless medium.  This is true of vanilla hwsim as well.
+In order to make this happen, you need to either run the hwsim interfaces
+in separate network namespaces, or you need to set up routing rules with
+the hwsim devices at a higher priority than local forwarding.
+
+`tests/test-001.sh` contains an example of the latter setup.
+
+# Example session
+
+The following sequence of commands establishes a two-node mesh using network
+namespaces.
+```
+sudo modprobe -r mac80211_hwsim
+sudo modprobe mac80211_hwsim
+sudo ./wmediumd/wmediumd -c ./tests/2node.cfg
+
+# in window 2
+sudo lxc-unshare -s NETWORK bash
+ps | grep bash  # note pid
+
+# in window 1
+sudo iw phy phy2 set netns $pid
+
+sudo ip link set wlan1 down
+sudo iw dev wlan1 set type mp
+sudo ip link set addr 42:00:00:00:00:00 dev wlan1
+sudo ip link set wlan1 up
+sudo ip addr add 10.10.10.1/24 dev wlan1
+sudo iw dev wlan1 set channel 149
+sudo iw dev wlan1 mesh join meshabc
+
+# in window 2
+ip link set lo
+
+sudo ip link set wlan2 down
+sudo iw dev wlan2 set type mp
+sudo ip link set addr 42:00:00:00:01:00 dev wlan2
+sudo ip link set wlan2 up
+sudo ip addr add 10.10.10.2/24 dev wlan2
+sudo iw dev wlan2 set channel 149
+sudo iw dev wlan2 mesh join meshabc
+
+iperf -u -s -i 10 -B 10.10.10.2
+
+# in window 1
+iperf -u -c 10.10.10.2 -b 100M -i 10 -t 120
+```

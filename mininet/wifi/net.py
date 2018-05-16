@@ -62,7 +62,8 @@ class Mininet_wifi(Mininet):
                  autoSetPositions=False, configureWiFiDirect=False,
                  configure4addr=False, defaultGraph=False,
                  noise_threshold=-91, cca_threshold=-90,
-                 rec_rssi=False, disable_tcp_checksum=False, ifb=False):
+                 rec_rssi=False, disable_tcp_checksum=False, ifb=False,
+                 max_sector=4, sector=0, side_dB = -5, main_dB = -20):
         """Create Mininet object.
            topo: Topo (topology) object or None
            switch: default Switch class
@@ -154,6 +155,10 @@ class Mininet_wifi(Mininet):
         self.nroads = 0
         self.conn = {}
         self.wlinks = []
+	self.max_sector = 0
+        self.sector = 0
+        self.side_dB = 0
+        slef.main_dB = 0
         Mininet_wifi.init()  # Initialize Mininet if necessary
 
         if not allAutoAssociation:
@@ -223,7 +228,11 @@ class Mininet_wifi(Mininet):
                                 prefixLen=self.prefixLen) +
                           '/%s' % self.prefixLen,
                     'channel': self.channel,
-                    'mode': self.mode
+                    'mode': self.mode,
+                    'max_sector': self.max_sector,
+                    'sector': self.sector,
+                    'main_dB': self.main_dB,
+                    'side_dB': self.side_dB
                    }
         defaults.update(params)
 
@@ -318,7 +327,11 @@ class Mininet_wifi(Mininet):
                     'inNamespace': self.inNamespace,
                     'ssid': self.ssid,
                     'channel': self.channel,
-                    'mode': self.mode
+                    'mode': self.mode,
+                    'max_sector': self.max_sector,
+                    'sector': self.sector,
+                    'main_dB': self.main_dB,
+                    'side_dB': self.side_dB
                    }
 
         defaults.update(params)
@@ -453,6 +466,8 @@ class Mininet_wifi(Mininet):
         node1 = node1 if not isinstance(node1, string_types) else self[node1]
         node2 = node2 if not isinstance(node2, string_types) else self[node2]
         options = dict(params)
+disable_tcp_checksum=False, ifb=False,
+                 sector=0, side):
 
         self.conn.setdefault('src', [])
         self.conn.setdefault('dst', [])
@@ -508,6 +523,8 @@ class Mininet_wifi(Mininet):
                 sta = node1
                 ap = node2
                 if port1:
+disable_tcp_checksum=False, ifb=False,
+                 sector=0, side):
                     sta_wlan = port1
                 if port2:
                     ap_wlan = port2
@@ -590,6 +607,8 @@ class Mininet_wifi(Mininet):
 
     def delLinkBetween(self, node1, node2, index=0, allLinks=False):
         """Delete link(s) between node1 and node2
+disable_tcp_checksum=False, ifb=False,
+                 sector=0, side):
            index: index of link to delete if multiple links (0)
            allLinks: ignore index and delete all such links (False)
            returns: deleted link(s)"""
@@ -627,6 +646,8 @@ class Mininet_wifi(Mininet):
 
         info('*** Creating network\n')
         if not self.controllers and self.controller:
+disable_tcp_checksum=False, ifb=False,
+                 sector=0, side):
             # Add a default controller
             info('*** Adding controller\n')
             classes = self.controller
@@ -682,15 +703,8 @@ class Mininet_wifi(Mininet):
 
     def build(self):
         "Build mininet."
-        if self.topo:
-            self.buildFromTopo(self.topo)
-        if self.isVanet:
-            self.create_vanet_link()
-        else:
-            if not mobility.stations:
-                for node in self.stations:
-                    if 'position' in node.params:
-                        mobility.stations.append(node)
+ble_tcp_checksum=False, ifb=False,
+                 sector=0, side):
 
         if (self.configure4addr or self.configureWiFiDirect
                 or self.wmediumd_mode == error_prob) and self.link == wmediumd:
