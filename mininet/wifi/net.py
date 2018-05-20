@@ -466,9 +466,6 @@ class Mininet_wifi(Mininet):
         node1 = node1 if not isinstance(node1, string_types) else self[node1]
         node2 = node2 if not isinstance(node2, string_types) else self[node2]
         options = dict(params)
-disable_tcp_checksum=False, ifb=False,
-                 sector=0, side):
-
         self.conn.setdefault('src', [])
         self.conn.setdefault('dst', [])
         self.conn.setdefault('ls', [])
@@ -523,8 +520,6 @@ disable_tcp_checksum=False, ifb=False,
                 sta = node1
                 ap = node2
                 if port1:
-disable_tcp_checksum=False, ifb=False,
-                 sector=0, side):
                     sta_wlan = port1
                 if port2:
                     ap_wlan = port2
@@ -607,8 +602,6 @@ disable_tcp_checksum=False, ifb=False,
 
     def delLinkBetween(self, node1, node2, index=0, allLinks=False):
         """Delete link(s) between node1 and node2
-disable_tcp_checksum=False, ifb=False,
-                 sector=0, side):
            index: index of link to delete if multiple links (0)
            allLinks: ignore index and delete all such links (False)
            returns: deleted link(s)"""
@@ -646,8 +639,6 @@ disable_tcp_checksum=False, ifb=False,
 
         info('*** Creating network\n')
         if not self.controllers and self.controller:
-disable_tcp_checksum=False, ifb=False,
-                 sector=0, side):
             # Add a default controller
             info('*** Adding controller\n')
             classes = self.controller
