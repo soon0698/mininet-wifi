@@ -694,8 +694,6 @@ class Mininet_wifi(Mininet):
 
     def build(self):
         "Build mininet."
-ble_tcp_checksum=False, ifb=False,
-                 sector=0, side):
 
         if (self.configure4addr or self.configureWiFiDirect
                 or self.wmediumd_mode == error_prob) and self.link == wmediumd:
