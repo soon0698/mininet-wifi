@@ -1,19 +1,26 @@
-1 => mininet/wifi/net.pyÀÇ Mininet_wifi class »ı¼ºÀÚ¿¡¼­ +max_sector, sector, side_dB, main_dB 
+1 => mininet/wifi/net.pyì˜ Mininet_wifi class ìƒì„±ìì—ì„œ +max_sector, sector, side_dB, main_dB 
 
-sector´Â ÇöÀç sectorÀÇ »óÅÂ. ±âÁ¡Àº ÀÓÀÇ·Î ¿ŞÂÊ ¸ÇÀ§ºÎÅÍ ½ÃÀÛÇÕ´Ï´Ù.
+sectorëŠ” í˜„ì¬ sectorì˜ ìƒíƒœ. ê¸°ì ì€ ì„ì˜ë¡œ ì™¼ìª½ ë§¨ìœ„ë¶€í„° ì‹œì‘í•©ë‹ˆë‹¤.
             
     0       |      1
 --------------------
     3       |      2     
             
-ex) max_sector°¡ 4¶ó¸é sector°¡ 4µîºĞµÇ¾î ÀÖ´Â »óÅÂ·Î, sector °ª¿¡ µû¶ó ¹üÀ§°¡ ´Ş¶óÁö¸ç 
-ÇöÀç sector°¡ 0ÀÌ¶ó¸é sector 0ÀÇ ¹üÀ§¿¡´Â main_dB(=-20)À» Àû¿ë, ³ª¸ÓÁö¿¡´Â side_dB(=-5)À» Àû¿ë 
+ex) max_sectorê°€ 4ë¼ë©´ sectorê°€ 4ë“±ë¶„ë˜ì–´ ìˆëŠ” ìƒíƒœë¡œ, sector ê°’ì— ë”°ë¼ ë²”ìœ„ê°€ ë‹¬ë¼ì§€ë©° 
+í˜„ì¬ sectorê°€ 0ì´ë¼ë©´ sector 0ì˜ ë²”ìœ„ì—ëŠ” main_dB(=-20)ì„ ì ìš©, ë‚˜ë¨¸ì§€ì—ëŠ” side_dB(=-5)ì„ ì ìš© 
 
-2 => mininet/wifi/net.pyÀÇ addAccessPoint, addStation¿¡¼­ max_sector, sector, side_dB, main_dB Ãß°¡
+2 => mininet/wifi/net.pyì˜ addAccessPoint, addStationì—ì„œ max_sector, sector, side_dB, main_dB ì¶”ê°€
 
 
-* mininet py¿¡¼­ topology »ı¼º½Ã link=wmediumd¿Í mode¸¦ ¼³Á¤ÇØÁÖ¸é wmediumd°¡ ÀÛµ¿ÇÏµµ·Ï µÇ¾îÀÖÀ½
-mininet station parameter -> wserver_messages.c¿¡¼­ Àü´Ş , ³»ºÎ¿¡¼­ °è»êÇÑ error_prob -> wserevr_messages_network.c¿¡¼­ ´äÀå
-python mininet process¿¡¼­ error_prob¸¦ º¸°í Åë½Å ÆÇ´Ü
+* mininet pyì—ì„œ topology ìƒì„±ì‹œ link=wmediumdì™€ modeë¥¼ ì„¤ì •í•´ì£¼ë©´ wmediumdê°€ ì‘ë™í•˜ë„ë¡ ë˜ì–´ìˆìŒ
+mininet station parameter -> wserver_messages.cì—ì„œ ì „ë‹¬ , ë‚´ë¶€ì—ì„œ ê³„ì‚°í•œ error_prob -> wserevr_messages_network.cì—ì„œ ë‹µì¥
+python mininet processì—ì„œ error_probë¥¼ ë³´ê³  í†µì‹  íŒë‹¨
 
-3 => mininet/wifi/wmediumdConnector.py¿¡¼­ ¼­¹ö ¸Ş¼¼Áö(max_sector, sector, main_dB, side_dB) Å¸ÀÔ Ãß°¡
+3 => mininet/wifi/wmediumdConnector.pyì—ì„œ ì„œë²„ ë©”ì„¸ì§€(max_sector, sector, main_dB, side_dB) íƒ€ì… ì¶”ê°€
+4 => mininet/wifi/node.pyì—ì„œ SetParameter ë“± ì¶”ê°€
+
+5 => wmediumd sta structureì—ì„œ Parameter ì¶”ê°€
+6 => wmediumd Serverì—ì„œ Parameter ì „ë‹¬ ë° ëŒ€ì… ì¶”ê°€
+
+7 => Parameterë¥¼ í† ëŒ€ë¡œ Angle, Path loss ê³„ì‚° ì¶”ê°€
+8 => wmediumd Serverì—ì„œ WmediumdConnectorë¡œ error_prob_matrixë¥¼ ë˜ëŒë ¤ì¤Œ
