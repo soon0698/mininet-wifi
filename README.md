@@ -16,11 +16,15 @@ ex) max_sector가 4라면 sector가 4등분되어 있는 상태로, sector 값�
 mininet station parameter -> wserver_messages.c에서 전달 , 내부에서 계산한 error_prob -> wserevr_messages_network.c에서 답장
 python mininet process에서 error_prob를 보고 통신 판단
 
+
 3 => mininet/wifi/wmediumdConnector.py에서 서버 메세지(max_sector, sector, main_dB, side_dB) 타입 추가
+
 4 => mininet/wifi/node.py에서 SetParameter 등 추가
 
 5 => wmediumd sta structure에서 Parameter 추가
+
 6 => wmediumd Server에서 Parameter 전달 및 대입 추가
 
 7 => Parameter를 토대로 Angle, Path loss 계산 추가
+
 8 => wmediumd Server에서 WmediumdConnector로 error_prob_matrix를 되돌려줌
