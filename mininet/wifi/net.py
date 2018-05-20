@@ -158,7 +158,7 @@ class Mininet_wifi(Mininet):
 	self.max_sector = 0
         self.sector = 0
         self.side_dB = 0
-        slef.main_dB = 0
+        self.main_dB = 0
         Mininet_wifi.init()  # Initialize Mininet if necessary
 
         if not allAutoAssociation:
