@@ -14,9 +14,9 @@ ex) max_sector가 4라면 sector가 4등분되어 있는 상태로, sector 값�
 
 * mininet py에서 topology 생성시 link=wmediumd와 mode를 설정해주면 wmediumd가 작동하도록 되어있음.
 
-mininet station parameter -> wserver_messages.c에서 전달 , 내부에서 계산한 error_prob -> wserevr_messages_network.c에서 답장
+* mininet station parameter -> wserver_messages.c에서 전달 , 내부에서 계산한 error_prob -> wserevr_messages_network.c에서 답장
 
-python mininet process에서 error_prob를 보고 통신 판단
+* python mininet process에서 error_prob를 보고 통신 판단
 
 
 3 => mininet/wifi/wmediumdConnector.py에서 서버 메세지(max_sector, sector, main_dB, side_dB) 타입 추가
